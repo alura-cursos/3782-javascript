@@ -7,6 +7,12 @@ function validarConteudo(conteudo) {
   return regexConteudo.test(conteudo)
 }
 
+const regexAutoria = /^[a-zA-Z]{3,15}$/
+
+function validarAutoria(autoria) {
+  return regexAutoria.test(autoria)
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   ui.renderizarPensamentos()
 
@@ -28,6 +34,11 @@ async function manipularSubmissaoFormulario(event) {
 
   if (!validarConteudo(conteudo)) {
     alert("É permitida a inclusão apenas de letras e espaços com no mínimo 10 caracteres")
+    return
+  }
+
+  if (!validarAutoria(autoria)) {
+    alert("É permitida a inclusão de letras e entre 3 e 15 caracteres sem espaços")
     return
   }
 
